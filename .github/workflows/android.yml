@@ -3,7 +3,7 @@ name: Android APK Build
 on:
   push:
     branches: [ "main", "master" ]
-  workflow_dispatch: # လက်နဲ့ နှိပ်ပြီး Build ချင်ရင် သုံးဖို့
+  workflow_dispatch:
 
 jobs:
   build:
@@ -18,8 +18,17 @@ jobs:
         distribution: 'zulu'
         java-version: '17'
 
+    # စနစ်အတွက် လိုအပ်တဲ့ Gradle ဖိုင်တွေကို အလိုအလျောက် အွန်လိုင်းကနေ ဆောက်ပေးမယ့်အဆင့်
+    - name: Initialize Gradle Wrapper
+      run: |
+        npm install -g @ionic/cli || true
+        gradle wrapper --gradle-version 8.0
+
+    - name: Grant Execute Permission
+      run: chmod +x gradlew
+
     - name: Build Debug APK
-      run: bash ./gradlew assembleDebug || npx android-studio-build-cli || ./gradlew assembleDebug
+      run: ./gradlew assembleDebug
 
     - name: Upload APK
       uses: actions/upload-artifact@v4
