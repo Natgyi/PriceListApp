@@ -18,17 +18,28 @@ jobs:
         distribution: 'zulu'
         java-version: '17'
 
-    # စနစ်အတွက် လိုအပ်တဲ့ Gradle ဖိုင်တွေကို အလိုအလျောက် အွန်လိုင်းကနေ ဆောက်ပေးမယ့်အဆင့်
-    - name: Initialize Gradle Wrapper
+    # လိုအပ်နေတဲ့ Android Project Structure နဲ့ Wrapper ဖိုင်တွေကို Actions ပေါ်မှာတင် Script နဲ့ အလိုအလျောက် ဆောက်ပေးမယ့်အဆင့်
+    - name: Auto-Generate Missing Android Config & Wrapper
       run: |
-        npm install -g @ionic/cli || true
+        # Gradle Wrapper ဆောက်ခြင်း
         gradle wrapper --gradle-version 8.0
+        
+        # local.properties ဖိုင်ဆောက်ခြင်း
+        echo "sdk.dir=$ANDROID_HOME" > local.properties
+        
+        # app/src/main/res/values/styles.xml ဖိုင် (Theme လိုအပ်ချက်အတွက် ဆောက်ပေးခြင်း)
+        mkdir -p app/src/main/res/values
+        cat << 'EOF' > app/src/main/res/values/styles.xml
+        <resources>
+            <style name="Theme.AppCompat.Light.NoActionBar" parent="Theme.MaterialComponents.Light.NoActionBar"/>
+        </resources>
+        EOF
 
-    - name: Grant Execute Permission
+    - name: Grant Execute Permission for Gradlew
       run: chmod +x gradlew
 
     - name: Build Debug APK
-      run: ./gradlew assembleDebug
+      run: ./gradlew assembleDebug --no-daemon
 
     - name: Upload APK
       uses: actions/upload-artifact@v4
