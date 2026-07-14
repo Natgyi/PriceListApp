@@ -18,16 +18,13 @@ jobs:
         distribution: 'zulu'
         java-version: '17'
 
-    # လိုအပ်နေတဲ့ Android Project Structure နဲ့ Wrapper ဖိုင်တွေကို Actions ပေါ်မှာတင် Script နဲ့ အလိုအလျောက် ဆောက်ပေးမယ့်အဆင့်
-    - name: Auto-Generate Missing Android Config & Wrapper
+    # Gradle 8.4 အဖြစ် အသေသတ်မှတ်ပြီး Wrapper ဖိုင်ဆောက်ခြင်း
+    - name: Auto-Generate Android Config & Wrapper
       run: |
-        # Gradle Wrapper ဆောက်ခြင်း
-        gradle wrapper --gradle-version 8.0
-        
-        # local.properties ဖိုင်ဆောက်ခြင်း
+        gradle wrapper --gradle-version 8.4
         echo "sdk.dir=$ANDROID_HOME" > local.properties
         
-        # app/src/main/res/values/styles.xml ဖိုင် (Theme လိုအပ်ချက်အတွက် ဆောက်ပေးခြင်း)
+        # Styles XML ကို ဆောက်ပေးခြင်း
         mkdir -p app/src/main/res/values
         cat << 'EOF' > app/src/main/res/values/styles.xml
         <resources>
