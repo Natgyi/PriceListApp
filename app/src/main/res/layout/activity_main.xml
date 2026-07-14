@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://tools.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp"
+    android:background="#F8F9FA"
+    tools:context=".MainActivity">
+
+    <!-- App Title Header -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="PriceList Manager"
+        android:textColor="#1A365D"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="30dp"/>
+
+    <!-- App Features Description Card -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#EBF8FF"
+        android:padding="15dp"
+        android:layout_marginBottom="40dp">
+        
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Local Storage: SQLite Database"
+            android:textColor="#2B6CB0"
+            android:textStyle="bold"
+            android:textSize="14sp"/>
+            
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Backup Format: JSON Export"
+            android:textColor="#2B6CB0"
+            android:textSize="13sp"
+            android:layout_marginTop="4dp"/>
+    </LinearLayout>
+
+    <!-- Button 1: Add Sample Item -->
+    <Button
+        android:id="@+id/btnAddItem"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:text="Add Sample Price Item"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#2B6CB0"
+        android:textSize="16sp"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Button 2: Export Data Backup -->
+    <Button
+        android:id="@+id/btnBackup"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:text="Export JSON Backup"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#319795"
+        android:textSize="16sp"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Button 3: Import Data Restore -->
+    <Button
+        android:id="@+id/btnRestore"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:text="Import JSON Restore"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#4A5568"
+        android:textSize="16sp" />
+
+</LinearLayout>
