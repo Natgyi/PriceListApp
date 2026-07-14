@@ -4,13 +4,26 @@ plugins {
 
 android {
     namespace 'com.example.pricelistapp'
-    compileSdk 33
+    compileSdk 34 // Gradle အသစ်တွေအတွက် SDK 34 က ပိုကိုက်ညီပါတယ်
 
     defaultConfig {
         applicationId "com.example.pricelistapp"
         minSdk 24
-        targetSdk 33
+        targetSdk 34
         versionCode 1
         versionName "1.0"
     }
+    
+    // Gradle 9+ နဲ့ အဆင်ပြေအောင် Java 17 ကို အတိအကျ ညွှန်းပေးထားပါတယ်
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+}
+
+dependencies {
+    // Android App အတွက် မရှိမဖြစ်လိုအပ်သော အခြေခံ libraries များ
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.9.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 }
